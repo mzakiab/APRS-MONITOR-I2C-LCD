@@ -109,6 +109,7 @@ void processPacket() {
     digitalWrite(LED_RX, HIGH); // ON LED 
     delay(500); // tunggu kejap nak proses data yg masuk
     lcd.clear(); // clear display dulu
+    lcd.setCursor(0, 0); 
     lcd.print(incomingPacket.src.call);
     lcd.print(F("-"));
     lcd.print(incomingPacket.src.ssid);
@@ -117,11 +118,10 @@ void processPacket() {
     //lcd.println();
     //lcd.set1X();
     //lcd.println();
-    lcd.setCursor(0,1);
+    lcd.setCursor(0, 1);
     for (int i = 0; i < incomingPacket.len; i++) {
-      if(i%20==15) lcd.println();
+    if(i%20==0) lcd.println();
       lcd.write(incomingPacket.info[i]);
-      lcd.cursor(); // tunjuk cursor
       lcd.blink(); // cursor kelip kelip
     }
     // lcd.println("");
