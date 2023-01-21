@@ -107,21 +107,24 @@ void processPacket() {
     Serial.println("");
 
     digitalWrite(LED_RX, HIGH); // ON LED 
-    lcd.clear(); // clear display dulu
     delay(500); // tunggu kejap nak proses data yg masuk
-    lcd.print(F("FROM:  "));
+    lcd.clear(); // clear display dulu
     lcd.print(incomingPacket.src.call);
     lcd.print(F("-"));
     lcd.print(incomingPacket.src.ssid);
+    lcd.print(F(" >"));
+    lcd.print(incomingPacket.dst.call);
     //lcd.println();
     //lcd.set1X();
     //lcd.println();
     lcd.setCursor(0,1);
     for (int i = 0; i < incomingPacket.len; i++) {
-      if(i%20==0) lcd.println();
+      if(i%20==15) lcd.println();
       lcd.write(incomingPacket.info[i]);
+      lcd.cursor(); // tunjuk cursor
+      lcd.blink(); // cursor kelip kelip
     }
-    lcd.println("");
+    // lcd.println("");
     digitalWrite(LED_RX, LOW); // OFF LED
     free(packetData);
 
