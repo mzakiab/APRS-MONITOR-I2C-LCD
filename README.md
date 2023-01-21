@@ -25,4 +25,4 @@ Bahan-bahan yang diperlukan:-
   <br>
 8. Jumper wayer
   <br>
-9. LED x 1
+9. LED x 1 biji
