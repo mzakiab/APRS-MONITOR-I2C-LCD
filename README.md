@@ -8,12 +8,21 @@ Penulis asal mengunakan Arduino Pro board, tetapi dalam project ini saya guna Ar
 Thanks https://github.com/chokelive/aprs_tnc
 <p>
 Bahan-bahan yang diperlukan:-
+  <br>
 1. Arduino Nano x 1 unit
+  <br>
 2. I2C LCD Display x 1 unit
+  <br>
 3. Bread board x 1 unit
+  <br>
 4. Perintang 100k ohm x 2 biji
+  <br>
 5. Capasitor 1uf 10v-50v x 1 biji
-6. Radio yang boleh RX freq 144.390 x 1
+  <br>
+6. Radio yang boleh RX freq 144.390MHz x 1 unit
+  <br>
 7. Audio cable
+  <br>
 8. Jumper wayer
+  <br>
 9. LED x 1
