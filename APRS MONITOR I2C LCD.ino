@@ -9,12 +9,18 @@ Koding asal https://github.com/chokelive/aprs_tnc
 //#include "SSD1306AsciiAvrI2c.h" // OLED Config
 #include <LiquidCrystal_I2C.h>
 #include<Wire.h>
+int LED_RX= 8; // rx dan proses LED indicator 
 
-LiquidCrystal_I2C lcd(0x3F,16,2);  // set the LCD address to 0x3F for a 16 chars and 2 line display
+LiquidCrystal_I2C lcd(0x27,16,2);  // set the LCD address to 0x3F for a 16 chars and 2 line display
 
+/*  I2C LCD     ARDUINO (NANO/UNO               )
+    VCC         5V
+    SDA         A4
+    SCL         A5
+*/
 
 // APRS Configulation
-#define CALL_SIGN "9W2KEY"
+#define CALL_SIGN "9W2KEY" // sila bubuh callsign sendiri
 #define CALL_SIGN_SSID 9
 
 #define ADC_REFERENCE REF_5V
@@ -34,6 +40,7 @@ uint8_t *packetData;
 
 void setup() {
   // Set up serial port
+  pinMode(LED_RX, OUTPUT);
   Serial.begin(115200);
 
   lcd.init();
@@ -64,9 +71,9 @@ void setup() {
   oled.println(F("ATN is good and ready"));
   oled.println(F("   to RX RF signal   "));
   */
-  lcd.setCursor(2,0); 
+  lcd.setCursor(0,0); 
   lcd.print("APRS Decoder LCD");
-  lcd.setCursor(2,1);
+  lcd.setCursor(4,1);
   lcd.print("by 9W2KEY");
 }
 
@@ -98,21 +105,23 @@ void processPacket() {
     }
     Serial.println("");
 
-    //oled.clear();
-    //oled.set2X();
+    digitalWrite(LED_RX, HIGH); // ON LED 
+    lcd.clear(); // clear display dulu
+    delay(500); // tunggu kejap nak proses data yg masuk
+    lcd.print(F("FROM:  "));
     lcd.print(incomingPacket.src.call);
     lcd.print(F("-"));
     lcd.print(incomingPacket.src.ssid);
-
-    lcd.println();
+    //lcd.println();
     //lcd.set1X();
-    lcd.println();
+    //lcd.println();
+    lcd.setCursor(0,1);
     for (int i = 0; i < incomingPacket.len; i++) {
       if(i%20==0) lcd.println();
       lcd.write(incomingPacket.info[i]);
     }
     lcd.println("");
-
+    digitalWrite(LED_RX, LOW); // OFF LED
     free(packetData);
 
     // Serial.print(F("Free RAM: ")); Serial.println(freeMemory());
