@@ -17,7 +17,7 @@ Bahan-bahan yang diperlukan:-
   <br>
 1. Arduino Nano x 1 unit
   <br>
-2. I2C LCD Display x 1 unit
+2. 16x2 I2C LCD Display x 1 unit
   <br>
 3. Bread board x 1 unit
   <br>
